@@ -1,0 +1,54 @@
+<html> 
+<head> 
+</head> 
+<body>
+  
+  <script>
+    // Definição inicial das variáveis de configuração do widget
+    var fm = "USD"; // Moeda de origem (Dólar Americano)
+    var to = "BRL,COP"; // Moedas de destino (Real Brasileiro e Peso Colombiano)
+    var tz = "-3"; // Fuso horário
+    var sz = "1x164"; // Tamanho do widget
+    var lg = "pt"; // Idioma (português)
+    var st = "default"; // Estilo do widget
+    var cd = 1; // Código (possivelmente para ativar alguma funcionalidade específica)
+    var am = 1; // Quantidade (possivelmente o valor padrão a ser convertido)
+    
+    // Divide o tamanho em largura e altura
+    var arr = sz.split("x");
+    var w = parseInt(arr[0]); // Largura
+    var h = parseInt(arr[1]); // Altura
+    
+    // Verifica e ajusta o fuso horário
+    if (tz === "timezone") {
+        var d = new Date();
+        tz = -d.getTimezoneOffset() / 60;
+        tz += "s";
+    } else if (tz === "userset") {
+        var d = new Date();
+        tz = -d.getTimezoneOffset() / 60;
+    }
+    
+    // Define o estilo padrão, se não fornecido
+    if (!st) {
+        st = "default";
+    }
+    
+    // Ajusta a largura e altura para 100%, se necessário
+    if (w === 1 || w < 1) {
+        w = '100%';
+    }
+    if (h === 1 || h < 1) {
+        h = '100%';
+    }
+    
+    // Define o protocolo HTTP ou HTTPS
+    var ht_protocol = (location.protocol === "https:" ? "https:" : "http:");
+    
+    // Escreve o código HTML para o iframe do widget de taxas de câmbio
+    document.write('<iframe loading="lazy" title="Exchange Rates Widget" src="' + ht_protocol + '//currencyrate.today/load-exchangerates?&lg=' + lg + '&tz=' + tz + '&fm=' + fm + '&to=' + to + '&st=' + st + '&cd=' + cd + '&am=' + am + '" width="' + w + '" height="' + h + '" frameborder="0" scrolling="no" loading="lazy"></iframe>');
+
+  </script>
+   
+</body> 
+</html>
