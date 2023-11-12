@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>Calculadora de Regra de Três</title>
+    <style>
+      body {
+          font-family: Poppins, sans-serif;
+          text-align: center;
+          padding: 20px;
+          background-color: #f4f4f4;
+      }
+
+      .container {
+          display: inline-block;
+          padding: 20px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          background-color: #fff;
+          margin-top: 10px;
+      }
+
+      .header {
+          background-color: #e9e9e9;
+          color: #333;
+          padding: 1px;
+          margin: -20px -20px 20px -20px;
+          border-radius: 8px 8px 0 0;
+      }
+
+      input[type="number"], input[type="text"] {
+          width: 100px;
+          padding: 8px;
+          margin: 10px;
+          border-radius: 4px;
+          text-align: center;
+      }
+
+      input[type="number"] {
+          border: 1px solid #ddd;
+          background-color: #f9f9f9;
+      }
+      
+
+      input[type="text"] {
+          background-color: #3C7D90;
+          border: 1px solid #3C7D90;
+          color: #FFFFFF;
+      }
+
+      .label {
+          display: block;
+          margin: 10px;
+          font-size: 18px;
+          color: #666;
+      }
+  </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Calculadora de Regra de Três</h2>
+        </div>
+        <input type="number" id="valorA" placeholder="A" oninput="calcularRegraDeTres()"> ESTÁ PARA
+        <input type="number" id="valorB" placeholder="B" oninput="calcularRegraDeTres()">
+        <div class="label">ASSIM COMO</div>
+        <input type="number" id="valorC" placeholder="C" oninput="calcularRegraDeTres()"> ESTÁ PARA
+        <input type="text" id="valorX" placeholder="X" disabled>
+    </div>
+
+    <script>
+        function calcularRegraDeTres() {
+            var valorA = document.getElementById('valorA').value;
+            var valorB = document.getElementById('valorB').value;
+            var valorC = document.getElementById('valorC').value;
+
+            if (valorA && valorB && valorC) {
+                var valorX = (valorB * valorC) / valorA;
+                document.getElementById('valorX').value = valorX.toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>
