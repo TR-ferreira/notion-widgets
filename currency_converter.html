@@ -1,0 +1,57 @@
+<html> 
+<head> 
+</head> 
+<body>
+  
+  <script>
+    // Definição inicial das variáveis de configuração do widget
+    var fm = "COP"; // Moeda de origem
+    var to = "USD"; // Moeda de destino
+    var tz = "-3";   // Fuso horário
+    var sz = "1x1";  // Tamanho do widget
+    var lg = "pt";   // Idioma (português)
+    var st = "default"; // Estilo do widget
+    var lr = "1";    // Layout responsivo (1 para ativo)
+    var rd = "0";    // Arredondamento (0 para desativado)
+
+    // Verifica e define o tamanho padrão do widget, se não for fornecido
+    if (!sz) {
+        sz = '1x1';
+    }
+    
+    // Verifica e define o fuso horário padrão, se não for fornecido
+    if (!tz) {
+        tz = '0';
+    }
+    
+    // Divide o tamanho em largura e altura
+    var arr = sz.split("x");
+    var w = parseInt(arr[0]); // Largura
+    var h = parseInt(arr[1]); // Altura
+    
+    // Ajusta o fuso horário para o fuso horário local ou definido pelo usuário
+    if (tz === "fuso horário") {
+        var d = new Date();
+        tz = -d.getTimezoneOffset() / 60;
+        tz += "s";
+    } else if (tz === "userset") {
+        var d = new Date();
+        tz = -d.getTimezoneOffset() / 60;
+    }
+    
+    // Ajusta a largura e altura para valores padrão, se necessário
+    if (w === 1 || w < 1 && h === 1 || h < 1) {
+        w = '100%';
+        h = (lr === 1) ? 306 : 289;
+    }
+    
+    // Define o protocolo HTTP ou HTTPS
+    var ht_protocol = (location.protocol === "https:" ? "https:" : "http:");
+    
+    // Escreve o código HTML para o iframe do widget de conversão de moeda
+    document.write('<iframe loading="lazy" title="Currency Converter Widget" src="' + ht_protocol + '//currencyrate.today/load-converter?&lg=' + lg + '&tz=' + tz + '&fm=' + fm + '&to=' + to + '&st=' + st + '&lr=' + lr + '&rd=' + rd + '" width="' + w + '" height="' + h + '" frameborder="0" scrolling="no" loading="lazy"></iframe>');
+
+  </script>
+  
+</body> 
+</html>
